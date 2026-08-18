@@ -1,6 +1,6 @@
 @extends('layouts.public')
 
-@section('title', 'Perpustakaan Digital')
+@section('title', 'PustakaOne')
 @section('meta_description', 'Jelajahi ribuan koleksi buku digital. Baca kapan saja, di mana saja.')
 
 @section('content')

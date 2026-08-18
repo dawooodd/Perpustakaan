@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>@yield('title', 'Perpustakaan Digital') — Katalog Buku</title>
+    <title>@yield('title', 'PustakaOne') — Katalog Buku</title>
     <meta name="description" content="@yield('meta_description', 'Jelajahi koleksi buku digital terlengkap. Baca buku favoritmu kapan saja, di mana saja.')">
 
     <!-- Fonts -->
@@ -32,7 +32,7 @@
                     <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-primary-600 to-primary-400 flex items-center justify-center shadow-lg shadow-primary-600/25">
                         <i data-lucide="book-open" class="w-5 h-5 text-white"></i>
                     </div>
-                    <span class="font-display font-bold text-xl text-surface-900 dark:text-white">Perpustakaan <span class="text-gradient">Digital</span></span>
+                    <span class="font-display font-bold text-xl text-surface-900 dark:text-white">Pustaka<span class="text-primary-600 dark:text-primary-400">One</span></span>
                 </a>
 
                 <!-- Desktop Nav -->
@@ -119,7 +119,7 @@
                         <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-primary-600 to-primary-400 flex items-center justify-center">
                             <i data-lucide="book-open" class="w-5 h-5 text-white"></i>
                         </div>
-                        <span class="font-display font-bold text-lg text-surface-900 dark:text-white">Perpustakaan</span>
+                        <span class="font-display font-bold text-lg text-surface-900 dark:text-white">Pustaka<span class="text-primary-600 dark:text-primary-400">One</span></span>
                     </a>
                     <p class="text-sm text-surface-500 dark:text-surface-400 leading-relaxed">
                         Platform perpustakaan digital modern untuk membaca dan mengelola koleksi buku secara efisien.
@@ -156,7 +156,7 @@
                 </div>
             </div>
             <div class="mt-10 pt-6 border-t border-surface-100 dark:border-surface-700/50 flex flex-col sm:flex-row items-center justify-between gap-4">
-                <p class="text-xs text-surface-400 dark:text-surface-500">&copy; {{ date('Y') }} Perpustakaan Digital. All rights reserved.</p>
+                <p class="text-xs text-surface-400 dark:text-surface-500">&copy; {{ date('Y') }} Ot's Media. All rights reserved.</p>
                 <div class="flex items-center gap-4">
                     <a href="#" class="text-surface-400 dark:text-surface-500 hover:text-primary-600 dark:hover:text-primary-400 transition-colors"><i data-lucide="github" class="w-4 h-4"></i></a>
                     <a href="#" class="text-surface-400 dark:text-surface-500 hover:text-primary-600 dark:hover:text-primary-400 transition-colors"><i data-lucide="twitter" class="w-4 h-4"></i></a>

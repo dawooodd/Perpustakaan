@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>@yield('title', 'Dashboard') — Perpustakaan Digital</title>
+    <title>@yield('title', 'Dashboard') — PustakaOne</title>
     <meta name="description" content="@yield('meta_description', 'Sistem Manajemen Perpustakaan Digital Modern')">
 
     <!-- Fonts -->
@@ -50,7 +50,7 @@
             </div>
             <span :class="$store.sidebar.open ? 'lg:opacity-100' : 'lg:opacity-0 lg:w-0'"
                   class="font-display font-bold text-lg text-surface-800 dark:text-white transition-all duration-300 whitespace-nowrap overflow-hidden">
-                Perpustakaan
+                Pustaka<span class="text-primary-600 dark:text-primary-400">One</span>
             </span>
         </a>
 
@@ -208,7 +208,7 @@
 
         <!-- Footer -->
         <footer class="px-6 py-4 text-center text-xs text-surface-400 dark:text-surface-500 border-t border-surface-100 dark:border-surface-700/50">
-            &copy; {{ date('Y') }} Perpustakaan Digital — Built with Laravel & Tailwind CSS
+            &copy; {{ date('Y') }} Ot's Media. All rights reserved.
         </footer>
     </div>
 

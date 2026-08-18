@@ -45,6 +45,39 @@ Alpine.store('notification', {
   },
 });
 
+// Reader Settings Store
+Alpine.store('readerSettings', {
+  fontSize: parseInt(localStorage.getItem('readerFontSize')) || 18,
+  fontFamily: localStorage.getItem('readerFontFamily') || 'serif',
+  lineHeight: parseFloat(localStorage.getItem('readerLineHeight')) || 1.8,
+  theme: localStorage.getItem('readerTheme') || 'auto', // 'auto' | 'light' | 'dark' | 'sepia'
+
+  increaseFontSize() {
+    if (this.fontSize < 32) {
+      this.fontSize += 2;
+      localStorage.setItem('readerFontSize', this.fontSize);
+    }
+  },
+  decreaseFontSize() {
+    if (this.fontSize > 12) {
+      this.fontSize -= 2;
+      localStorage.setItem('readerFontSize', this.fontSize);
+    }
+  },
+  setFontFamily(family) {
+    this.fontFamily = family;
+    localStorage.setItem('readerFontFamily', family);
+  },
+  setLineHeight(height) {
+    this.lineHeight = height;
+    localStorage.setItem('readerLineHeight', height);
+  },
+  setTheme(theme) {
+    this.theme = theme;
+    localStorage.setItem('readerTheme', theme);
+  },
+});
+
 // Start Alpine
 Alpine.start();
 

@@ -283,3 +283,138 @@
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40'%3E%3Cpath d='M0 0h40v40H0z' fill='none' stroke='%231e293b' stroke-width='0.5'/%3E%3C/svg%3E");
   }
 }
+
+/* ===== READER STYLES ===== */
+@layer components {
+
+  /* Reader Body Typography */
+  .reader-body {
+    @apply mx-auto max-w-2xl px-6 py-8 lg:px-8;
+  }
+  .reader-body.font-serif-mode {
+    @apply font-serif;
+  }
+  .reader-body.font-sans-mode {
+    @apply font-sans;
+  }
+  .reader-content {
+    @apply leading-relaxed text-surface-800 dark:text-surface-200;
+  }
+  .reader-content p {
+    @apply mb-6;
+  }
+  .reader-content h1, .reader-content h2, .reader-content h3 {
+    @apply font-display font-bold mb-4 mt-8 text-surface-900 dark:text-white;
+  }
+  .reader-content h1 { @apply text-3xl; }
+  .reader-content h2 { @apply text-2xl; }
+  .reader-content h3 { @apply text-xl; }
+  .reader-content blockquote {
+    @apply border-l-4 border-primary-500 pl-4 italic text-surface-600 dark:text-surface-400 my-6;
+  }
+  .reader-content em {
+    @apply italic;
+  }
+  .reader-content strong {
+    @apply font-bold;
+  }
+
+  /* Sepia Mode */
+  .sepia-mode {
+    background-color: #F4ECD8 !important;
+    color: #5B4636 !important;
+  }
+  .sepia-mode .reader-content {
+    color: #5B4636 !important;
+  }
+  .sepia-mode .reader-toolbar {
+    background-color: rgba(244, 236, 216, 0.95) !important;
+    border-color: #D4C5A9 !important;
+  }
+  .sepia-mode .reader-bottom-bar {
+    background-color: rgba(244, 236, 216, 0.95) !important;
+    border-color: #D4C5A9 !important;
+  }
+
+  /* Reader Toolbar */
+  .reader-toolbar {
+    @apply sticky top-0 z-40 bg-white/95 dark:bg-surface-900/95 backdrop-blur-xl
+           border-b border-surface-200/50 dark:border-surface-700/50
+           transition-all duration-300;
+  }
+
+  /* Reader Bottom Bar */
+  .reader-bottom-bar {
+    @apply fixed bottom-0 left-0 right-0 z-40
+           bg-white/95 dark:bg-surface-900/95 backdrop-blur-xl
+           border-t border-surface-200/50 dark:border-surface-700/50
+           transition-all duration-300;
+  }
+
+  /* Reading Progress Bar */
+  .reader-progress-bar {
+    @apply fixed top-0 left-0 z-50 h-0.5 transition-all duration-150;
+    background: linear-gradient(90deg, #6366F1, #818CF8, #A78BFA);
+  }
+
+  /* Heart Animation */
+  .heart-btn {
+    @apply transition-all duration-200;
+  }
+  .heart-btn.liked {
+    @apply text-rose-500;
+    animation: heartBeat 0.4s ease-in-out;
+  }
+  @keyframes heartBeat {
+    0% { transform: scale(1); }
+    25% { transform: scale(1.3); }
+    50% { transform: scale(0.95); }
+    100% { transform: scale(1); }
+  }
+
+  /* Bookmark Animation */
+  .bookmark-btn.bookmarked {
+    @apply text-amber-500;
+    animation: bookmarkPop 0.3s ease-out;
+  }
+  @keyframes bookmarkPop {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.2) translateY(-2px); }
+    100% { transform: scale(1); }
+  }
+
+  /* Chapter Drawer */
+  .chapter-drawer {
+    @apply fixed top-0 left-0 z-50 h-full w-80 max-w-[85vw]
+           bg-white dark:bg-surface-800 shadow-float
+           border-r border-surface-200 dark:border-surface-700
+           transform transition-transform duration-300 ease-in-out;
+  }
+  .chapter-drawer.closed {
+    @apply -translate-x-full;
+  }
+
+  /* Settings Panel */
+  .settings-panel {
+    @apply absolute right-0 top-full mt-2 w-72 p-4 rounded-2xl
+           bg-white dark:bg-surface-800 border border-surface-200 dark:border-surface-700
+           shadow-float z-50 animate-slide-down;
+  }
+
+  /* Comment Card */
+  .comment-card {
+    @apply flex gap-3 p-4 rounded-xl transition-colors duration-200
+           hover:bg-surface-50 dark:hover:bg-surface-800/50;
+  }
+
+  /* Auth Modal (glassmorphism) */
+  .auth-modal-overlay {
+    @apply fixed inset-0 bg-black/60 backdrop-blur-md z-[60] flex items-center justify-center p-4;
+  }
+  .auth-modal-content {
+    @apply bg-white/95 dark:bg-surface-800/95 backdrop-blur-xl rounded-3xl
+           shadow-float border border-white/20 dark:border-surface-700/50
+           w-full max-w-sm p-8 text-center animate-scale-in;
+  }
+}
+

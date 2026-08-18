@@ -10,7 +10,7 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Merriweather:wght@300;400;700;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
@@ -49,10 +49,25 @@
                         <i x-show="!$store.theme.dark" data-lucide="moon" class="w-5 h-5"></i>
                         <i x-show="$store.theme.dark" data-lucide="sun" class="w-5 h-5" style="display:none;"></i>
                     </button>
-                    <a href="{{ route('admin.dashboard') }}" class="btn-primary btn-sm hidden lg:inline-flex">
-                        <i data-lucide="layout-dashboard" class="w-4 h-4"></i>
-                        Dashboard Admin
+
+                    @auth
+                    <a href="{{ route('user.dashboard') }}" class="btn-secondary btn-sm hidden lg:inline-flex">
+                        <i data-lucide="user" class="w-4 h-4"></i>
+                        {{ Auth::user()->name }}
                     </a>
+                    @endauth
+
+                    @guest
+                    <a href="{{ route('login') }}" class="btn-secondary btn-sm hidden lg:inline-flex">
+                        <i data-lucide="log-in" class="w-4 h-4"></i>
+                        Masuk
+                    </a>
+                    <a href="{{ route('register') }}" class="btn-primary btn-sm hidden lg:inline-flex">
+                        <i data-lucide="user-plus" class="w-4 h-4"></i>
+                        Daftar
+                    </a>
+                    @endguest
+
                     <!-- Mobile Menu Toggle -->
                     <button @click="mobileMenu = !mobileMenu" class="btn-icon lg:hidden text-surface-600 dark:text-surface-300">
                         <i x-show="!mobileMenu" data-lucide="menu" class="w-5 h-5"></i>
@@ -72,8 +87,18 @@
                 <a href="{{ route('books.index') }}" class="block px-4 py-2.5 rounded-xl text-sm font-medium text-surface-700 dark:text-surface-300 hover:bg-surface-100 dark:hover:bg-surface-700/50">Katalog Buku</a>
                 <a href="{{ route('authors.index') }}" class="block px-4 py-2.5 rounded-xl text-sm font-medium text-surface-700 dark:text-surface-300 hover:bg-surface-100 dark:hover:bg-surface-700/50">Penulis</a>
                 <a href="{{ route('publishers.index') }}" class="block px-4 py-2.5 rounded-xl text-sm font-medium text-surface-700 dark:text-surface-300 hover:bg-surface-100 dark:hover:bg-surface-700/50">Penerbit</a>
-                <div class="pt-2">
-                    <a href="{{ route('admin.dashboard') }}" class="btn-primary w-full text-center">Dashboard Admin</a>
+                <div class="pt-2 space-y-2">
+                    @auth
+                    <a href="{{ route('user.dashboard') }}" class="btn-secondary w-full text-center">Dashboard Saya</a>
+                    <form method="POST" action="{{ route('logout') }}">
+                        @csrf
+                        <button type="submit" class="btn-ghost w-full text-center text-rose-600">Keluar</button>
+                    </form>
+                    @endauth
+                    @guest
+                    <a href="{{ route('login') }}" class="btn-secondary w-full text-center">Masuk</a>
+                    <a href="{{ route('register') }}" class="btn-primary w-full text-center">Daftar</a>
+                    @endguest
                 </div>
             </div>
         </div>
@@ -143,5 +168,7 @@
     <script>
         document.addEventListener('DOMContentLoaded', () => { if(window.lucide) lucide.createIcons(); });
     </script>
+
+    @stack('scripts')
 </body>
 </html>

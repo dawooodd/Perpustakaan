@@ -6,6 +6,7 @@ use App\Models\Book;
 use App\Models\Author;
 use App\Models\Publisher;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class BookController extends Controller
 {
@@ -13,6 +14,31 @@ class BookController extends Controller
     {
         $books = Book::with(['author', 'publisher'])->get();
         return view('books.index', compact('books'));
+    }
+
+    public function show(Book $book)
+    {
+        $book->load(['author', 'publisher', 'chapters', 'likes', 'bookmarks']);
+
+        $isLiked = Auth::check() ? $book->isLikedBy(Auth::user()) : false;
+        $isBookmarked = Auth::check() ? $book->isBookmarkedBy(Auth::user()) : false;
+        $likesCount = $book->likesCount();
+        $chaptersCount = $book->chapters()->count();
+        $readsCount = $book->reads()->count();
+
+        // Get user's reading progress if logged in
+        $readProgress = null;
+        if (Auth::check()) {
+            $read = $book->reads()->where('user_id', Auth::id())->first();
+            if ($read) {
+                $readProgress = $read;
+            }
+        }
+
+        return view('books.show', compact(
+            'book', 'isLiked', 'isBookmarked', 'likesCount',
+            'chaptersCount', 'readsCount', 'readProgress'
+        ));
     }
 
     public function create()
@@ -95,4 +121,3 @@ class BookController extends Controller
         return redirect()->route('books.index');
     }
 }
-

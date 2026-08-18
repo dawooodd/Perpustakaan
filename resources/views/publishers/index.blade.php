@@ -26,35 +26,25 @@
 
     <!-- Publisher Cards Grid -->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 lg:gap-5">
-        @php
-            $samplePublishers = [
-                ['id' => 1, 'name' => 'O\'Reilly Media', 'books' => 45, 'icon' => 'from-red-500 to-rose-600'],
-                ['id' => 2, 'name' => 'Addison-Wesley', 'books' => 32, 'icon' => 'from-blue-500 to-indigo-600'],
-                ['id' => 3, 'name' => 'Pearson Education', 'books' => 28, 'icon' => 'from-amber-500 to-yellow-600'],
-                ['id' => 4, 'name' => 'Gramedia Pustaka', 'books' => 24, 'icon' => 'from-emerald-500 to-green-600'],
-                ['id' => 5, 'name' => 'Erlangga', 'books' => 19, 'icon' => 'from-violet-500 to-purple-600'],
-                ['id' => 6, 'name' => 'Manning Publications', 'books' => 15, 'icon' => 'from-teal-500 to-cyan-600'],
-            ];
-        @endphp
-        @foreach($samplePublishers as $pub)
+        @foreach($publishers as $pub)
         <div class="card-hover p-5 group">
             <div class="flex items-start justify-between mb-4">
-                <div class="w-14 h-14 rounded-2xl bg-gradient-to-br {{ $pub['icon'] }} flex items-center justify-center shadow-lg shrink-0">
-                    <i data-lucide="building-2" class="w-6 h-6 text-white"></i>
+                <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center shadow-lg text-white font-bold text-lg shrink-0">
+                    {{ strtoupper(substr($pub->name, 0, 2)) }}
                 </div>
                 <div class="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-                    <button @click="showModal = true; editMode = true; editId = {{ $pub['id'] }}; formName = '{{ $pub['name'] }}'" class="btn-icon text-surface-400 hover:text-primary-600">
+                    <button @click="showModal = true; editMode = true; editId = {{ $pub->id }}; formName = '{{ addslashes($pub->name) }}'" class="btn-icon text-surface-400 hover:text-primary-600">
                         <i data-lucide="pencil" class="w-4 h-4"></i>
                     </button>
-                    <button @click="deleteId = {{ $pub['id'] }}; showDeleteModal = true" class="btn-icon text-surface-400 hover:text-rose-600">
+                    <button @click="deleteId = {{ $pub->id }}; showDeleteModal = true" class="btn-icon text-surface-400 hover:text-rose-600">
                         <i data-lucide="trash-2" class="w-4 h-4"></i>
                     </button>
                 </div>
             </div>
-            <h3 class="font-semibold text-surface-800 dark:text-surface-200 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">{{ $pub['name'] }}</h3>
-            <p class="text-xs text-surface-400 dark:text-surface-500 mt-1 line-clamp-2">Penerbit buku-buku berkualitas di bidang teknologi dan pendidikan.</p>
+            <h3 class="font-semibold text-surface-800 dark:text-surface-200 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">{{ $pub->name }}</h3>
+            <p class="text-xs text-surface-400 dark:text-surface-500 mt-1 line-clamp-2">Penerbit buku-buku populer dalam bidang pengembangan perangkat lunak dan teknologi.</p>
             <div class="flex items-center gap-2 mt-4">
-                <span class="badge-level"><i data-lucide="book-copy" class="w-3 h-3"></i> {{ $pub['books'] }} Buku</span>
+                <span class="badge-level"><i data-lucide="book-copy" class="w-3 h-3"></i> {{ $pub->books_count ?? 0 }} Buku</span>
             </div>
         </div>
         @endforeach

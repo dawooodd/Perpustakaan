@@ -26,37 +26,25 @@
 
     <!-- Author Cards Grid -->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 lg:gap-5">
-        @php
-            $sampleAuthors = [
-                ['id' => 1, 'name' => 'Robert C. Martin', 'books' => 12, 'color' => 'from-sky-500 to-blue-600'],
-                ['id' => 2, 'name' => 'Martin Fowler', 'books' => 8, 'color' => 'from-emerald-500 to-teal-600'],
-                ['id' => 3, 'name' => 'Eric Evans', 'books' => 5, 'color' => 'from-violet-500 to-purple-600'],
-                ['id' => 4, 'name' => 'Kent Beck', 'books' => 6, 'color' => 'from-amber-500 to-orange-600'],
-                ['id' => 5, 'name' => 'Kathy Sierra', 'books' => 4, 'color' => 'from-rose-500 to-pink-600'],
-                ['id' => 6, 'name' => 'Gang of Four', 'books' => 3, 'color' => 'from-indigo-500 to-blue-700'],
-                ['id' => 7, 'name' => 'Steve McConnell', 'books' => 7, 'color' => 'from-teal-500 to-cyan-600'],
-                ['id' => 8, 'name' => 'David Thomas', 'books' => 5, 'color' => 'from-fuchsia-500 to-purple-700'],
-            ];
-        @endphp
-        @foreach($sampleAuthors as $author)
+        @foreach($authors as $author)
         <div class="card-hover p-5 group">
             <div class="flex items-start justify-between mb-4">
-                <div class="w-14 h-14 rounded-2xl bg-gradient-to-br {{ $author['color'] }} flex items-center justify-center shadow-lg text-white font-bold text-lg shrink-0">
-                    {{ strtoupper(substr($author['name'], 0, 1)) }}{{ strtoupper(substr(explode(' ', $author['name'])[count(explode(' ', $author['name']))-1], 0, 1)) }}
+                <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-sky-500 to-blue-600 flex items-center justify-center shadow-lg text-white font-bold text-lg shrink-0">
+                    {{ strtoupper(substr($author->name, 0, 2)) }}
                 </div>
                 <div class="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-                    <button @click="showModal = true; editMode = true; editId = {{ $author['id'] }}; formName = '{{ $author['name'] }}'" class="btn-icon text-surface-400 hover:text-primary-600">
+                    <button @click="showModal = true; editMode = true; editId = {{ $author->id }}; formName = '{{ addslashes($author->name) }}'" class="btn-icon text-surface-400 hover:text-primary-600">
                         <i data-lucide="pencil" class="w-4 h-4"></i>
                     </button>
-                    <button @click="deleteId = {{ $author['id'] }}; showDeleteModal = true" class="btn-icon text-surface-400 hover:text-rose-600">
+                    <button @click="deleteId = {{ $author->id }}; showDeleteModal = true" class="btn-icon text-surface-400 hover:text-rose-600">
                         <i data-lucide="trash-2" class="w-4 h-4"></i>
                     </button>
                 </div>
             </div>
-            <h3 class="font-semibold text-surface-800 dark:text-surface-200 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">{{ $author['name'] }}</h3>
+            <h3 class="font-semibold text-surface-800 dark:text-surface-200 group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">{{ $author->name }}</h3>
             <p class="text-xs text-surface-400 dark:text-surface-500 mt-1 line-clamp-2">Penulis buku-buku populer dalam bidang pengembangan perangkat lunak dan rekayasa perangkat lunak.</p>
             <div class="flex items-center gap-2 mt-4">
-                <span class="badge-level"><i data-lucide="book-copy" class="w-3 h-3"></i> {{ $author['books'] }} Buku</span>
+                <span class="badge-level"><i data-lucide="book-copy" class="w-3 h-3"></i> {{ $author->books_count ?? 0 }} Buku</span>
             </div>
         </div>
         @endforeach

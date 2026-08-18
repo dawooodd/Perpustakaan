@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('ebook')->nullable();
             $table->foreignId('author_id')->nullable();
             $table->foreignId('publisher_id')->nullable();
+            $table->timestamps();
         });  
     }
 

@@ -18,16 +18,7 @@
 
     <!-- Level List -->
     <div class="card overflow-hidden">
-        @php
-            $sampleLevels = [
-                ['id' => 1, 'name' => 'Pemula', 'books' => 45, 'icon' => 'sprout', 'color' => 'bg-emerald-50 dark:bg-emerald-900/20 text-emerald-600 dark:text-emerald-400'],
-                ['id' => 2, 'name' => 'Menengah', 'books' => 78, 'icon' => 'flame', 'color' => 'bg-amber-50 dark:bg-amber-900/20 text-amber-600 dark:text-amber-400'],
-                ['id' => 3, 'name' => 'Lanjut', 'books' => 56, 'icon' => 'rocket', 'color' => 'bg-violet-50 dark:bg-violet-900/20 text-violet-600 dark:text-violet-400'],
-                ['id' => 4, 'name' => 'Ahli', 'books' => 23, 'icon' => 'crown', 'color' => 'bg-rose-50 dark:bg-rose-900/20 text-rose-600 dark:text-rose-400'],
-                ['id' => 5, 'name' => 'Umum', 'books' => 120, 'icon' => 'globe', 'color' => 'bg-sky-50 dark:bg-sky-900/20 text-sky-600 dark:text-sky-400'],
-            ];
-        @endphp
-        @foreach($sampleLevels as $idx => $level)
+        @foreach($levels as $idx => $level)
         <div class="flex items-center gap-4 px-6 py-4 group hover:bg-surface-50/50 dark:hover:bg-surface-700/20 transition-colors
                     {{ $idx > 0 ? 'border-t border-surface-100 dark:border-surface-700/50' : '' }}">
             <!-- Drag Handle -->
@@ -36,28 +27,23 @@
             </div>
 
             <!-- Icon -->
-            <div class="w-10 h-10 rounded-xl {{ $level['color'] }} flex items-center justify-center shrink-0">
-                <i data-lucide="{{ $level['icon'] }}" class="w-5 h-5"></i>
+            <div class="w-10 h-10 rounded-xl bg-sky-50 dark:bg-sky-900/20 text-sky-600 dark:text-sky-400 flex items-center justify-center shrink-0">
+                <i data-lucide="layers" class="w-5 h-5"></i>
             </div>
 
             <!-- Info -->
             <div class="flex-1 min-w-0">
-                <h3 class="font-semibold text-surface-800 dark:text-surface-200">{{ $level['name'] }}</h3>
-                <p class="text-xs text-surface-400 dark:text-surface-500 mt-0.5">Tingkat {{ strtolower($level['name']) }} untuk klasifikasi buku</p>
+                <h3 class="font-semibold text-surface-800 dark:text-surface-200">{{ $level->name }}</h3>
+                <p class="text-xs text-surface-400 dark:text-surface-500 mt-0.5">Tingkat {{ strtolower($level->name) }} untuk klasifikasi buku</p>
             </div>
-
-            <!-- Book Count -->
-            <span class="badge-neutral shrink-0">
-                <i data-lucide="book-copy" class="w-3 h-3"></i> {{ $level['books'] }}
-            </span>
 
             <!-- Actions -->
             <div class="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity duration-200 shrink-0">
-                <button @click="showModal = true; editMode = true; editId = {{ $level['id'] }}; formName = '{{ $level['name'] }}'"
+                <button @click="showModal = true; editMode = true; editId = {{ $level->id }}; formName = '{{ addslashes($level->name) }}'"
                         class="btn-icon text-surface-400 hover:text-primary-600">
                     <i data-lucide="pencil" class="w-4 h-4"></i>
                 </button>
-                <button @click="deleteId = {{ $level['id'] }}; showDeleteModal = true"
+                <button @click="deleteId = {{ $level->id }}; showDeleteModal = true"
                         class="btn-icon text-surface-400 hover:text-rose-600">
                     <i data-lucide="trash-2" class="w-4 h-4"></i>
                 </button>

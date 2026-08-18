@@ -163,22 +163,39 @@
 
                 <!-- Profile Dropdown -->
                 <div x-data="{ open: false }" class="relative">
-                    <button @click="open = !open" class="flex items-center gap-2 ml-2">
-                        <div class="avatar avatar-sm">AD</div>
-                        <span class="hidden md:block text-sm font-medium text-surface-700 dark:text-surface-300">Admin</span>
+                    <button @click="open = !open" class="flex items-center gap-2 ml-2 focus:outline-none">
+                        <div class="avatar avatar-sm uppercase">
+                            {{ auth()->check() ? substr(auth()->user()->name, 0, 2) : 'GU' }}
+                        </div>
+                        <span class="hidden md:block text-sm font-medium text-surface-700 dark:text-surface-300">
+                            {{ auth()->user()->name ?? 'Guest' }}
+                        </span>
                         <i data-lucide="chevron-down" class="w-4 h-4 text-surface-400 hidden md:block"></i>
                     </button>
-                    <div x-show="open" @click.away="open = false" x-transition class="dropdown-menu" style="display:none;">
-                        <a href="{{ route('admin.profile') }}" class="dropdown-item">
-                            <i data-lucide="user" class="w-4 h-4"></i> Profil
+
+                    <div x-show="open" 
+                         @click.away="open = false" 
+                         x-transition:enter="transition ease-out duration-200"
+                         x-transition:enter-start="opacity-0 scale-95 -translate-y-2"
+                         x-transition:enter-end="opacity-100 scale-100 translate-y-0"
+                         x-transition:leave="transition ease-in duration-150"
+                         x-transition:leave-start="opacity-100"
+                         x-transition:leave-end="opacity-0 scale-95"
+                         class="absolute right-0 mt-2 w-48 bg-white dark:bg-surface-800 rounded-md shadow-lg py-1 border border-surface-100 dark:border-surface-700 z-50" 
+                         style="display:none;">
+                        
+                        <a href="{{ route('admin.profile') }}" class="flex items-center gap-2 px-4 py-2 text-sm text-surface-700 dark:text-surface-300 hover:bg-surface-100 dark:hover:bg-surface-700">
+                            <i data-lucide="user" class="w-4 h-4"></i> Lihat Profil
                         </a>
-                        <a href="#" class="dropdown-item">
-                            <i data-lucide="settings" class="w-4 h-4"></i> Pengaturan
-                        </a>
+                        
                         <div class="border-t border-surface-100 dark:border-surface-700 my-1"></div>
-                        <a href="#" class="dropdown-item text-rose-600 dark:text-rose-400">
-                            <i data-lucide="log-out" class="w-4 h-4"></i> Keluar
-                        </a>
+                        
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <button type="submit" class="w-full text-left flex items-center gap-2 px-4 py-2 text-sm text-rose-600 dark:text-rose-400 hover:bg-surface-100 dark:hover:bg-surface-700">
+                                <i data-lucide="log-out" class="w-4 h-4"></i> Keluar / Logout
+                            </button>
+                        </form>
                     </div>
                 </div>
             </div>

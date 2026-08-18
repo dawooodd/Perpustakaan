@@ -146,12 +146,13 @@
                 <div>
                     <h4 class="font-semibold text-sm text-surface-800 dark:text-surface-200 mb-4">Berlangganan</h4>
                     <p class="text-sm text-surface-500 dark:text-surface-400 mb-3">Dapatkan info buku terbaru.</p>
-                    <div class="flex gap-2">
-                        <input type="email" placeholder="email@contoh.com" class="flex-1 form-input text-sm py-2.5">
-                        <button class="btn-primary btn-sm shrink-0">
+                    <form action="#" method="POST" class="flex gap-2">
+                        @csrf
+                        <input type="email" placeholder="email@contoh.com" required class="flex-1 form-input text-sm py-2.5">
+                        <button type="submit" class="btn-primary btn-sm shrink-0">
                             <i data-lucide="send" class="w-4 h-4"></i>
                         </button>
-                    </div>
+                    </form>
                 </div>
             </div>
             <div class="mt-10 pt-6 border-t border-surface-100 dark:border-surface-700/50 flex flex-col sm:flex-row items-center justify-between gap-4">

@@ -6,57 +6,52 @@
 @section('content')
 
 <!-- Hero Section -->
-<section class="relative min-h-[90vh] flex items-center overflow-hidden">
-    <!-- Background Decoration -->
-    <div class="absolute inset-0 bg-gradient-to-br from-primary-600 via-primary-700 to-primary-900"></div>
-    <div class="absolute inset-0 bg-grid-pattern opacity-10"></div>
-    <!-- Floating Shapes -->
-    <div class="absolute top-20 left-10 w-72 h-72 bg-primary-400/20 rounded-full blur-3xl animate-float"></div>
-    <div class="absolute bottom-20 right-10 w-96 h-96 bg-violet-400/15 rounded-full blur-3xl animate-float" style="animation-delay: 2s;"></div>
-    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-indigo-300/10 rounded-full blur-3xl"></div>
+<section class="relative min-h-[90vh] flex items-center overflow-hidden bg-surface-50 dark:bg-surface-900">
+    <!-- Subtle ambient glow — accent only, not a full background -->
+    <div class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] bg-primary-500/[0.06] dark:bg-primary-400/[0.04] rounded-full blur-[120px] pointer-events-none"></div>
 
     <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-20 w-full">
         <div class="text-center max-w-4xl mx-auto">
             <!-- Badge -->
-            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 mb-8 animate-fade-in">
-                <span class="w-2 h-2 bg-emerald-400 rounded-full animate-pulse-soft"></span>
-                <span class="text-sm font-medium text-white/90">Platform Baca Digital #1</span>
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary-50 dark:bg-primary-900/20 border border-primary-200/60 dark:border-primary-700/40 mb-8">
+                <span class="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></span>
+                <span class="text-sm font-medium text-primary-700 dark:text-primary-300">Platform Baca Digital #1</span>
             </div>
 
-            <!-- Heading -->
-            <h1 class="text-4xl sm:text-5xl lg:text-7xl font-display font-extrabold text-white leading-tight mb-6 animate-slide-up">
+            <!-- Heading — clean, no SVG swoosh -->
+            <h1 class="text-4xl sm:text-5xl lg:text-7xl font-display font-extrabold tracking-tight text-surface-900 dark:text-white leading-[1.1] mb-6">
                 Jelajahi Dunia
-                <span class="relative">
-                    <span class="relative z-10">Pengetahuan</span>
-                    <svg class="absolute -bottom-2 left-0 w-full h-4 text-primary-300/50" viewBox="0 0 300 12" fill="none"><path d="M1 9C80 3 200 3 299 9" stroke="currentColor" stroke-width="4" stroke-linecap="round"/></svg>
-                </span>
+                <span class="text-primary-600 dark:text-primary-400">Pengetahuan</span>
                 <br>Tanpa Batas
             </h1>
 
-            <p class="text-lg sm:text-xl text-white/70 max-w-2xl mx-auto mb-10 animate-slide-up" style="animation-delay: 0.1s;">
+            <p class="text-lg sm:text-xl text-surface-500 dark:text-surface-400 max-w-2xl mx-auto mb-10 leading-relaxed">
                 Ribuan koleksi buku digital tersedia untukmu. Temukan, baca, dan kelola perpustakaanmu secara modern dan efisien.
             </p>
 
-            <!-- Floating Search Bar -->
-            <div class="max-w-3xl mx-auto animate-slide-up" style="animation-delay: 0.2s;"
+            <!-- Search Bar — solid background with soft shadow -->
+            <div class="max-w-3xl mx-auto"
                  x-data="{ query: '', category: '', showFilters: false }">
-                <div class="bg-white/10 backdrop-blur-xl rounded-2xl p-2 border border-white/20 shadow-2xl">
+                <div class="bg-white dark:bg-surface-800 rounded-2xl p-2 border border-surface-200 dark:border-surface-700 shadow-lg shadow-surface-900/5 dark:shadow-black/20">
                     <div class="flex flex-col sm:flex-row gap-2">
                         <div class="relative flex-1">
-                            <i data-lucide="search" class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-white/50"></i>
+                            <i data-lucide="search" class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-surface-400 dark:text-surface-500"></i>
                             <input x-model="query" type="text" placeholder="Cari judul buku, penulis, atau ISBN..."
-                                   class="w-full pl-12 pr-4 py-4 bg-white/10 text-white placeholder:text-white/40
-                                          rounded-xl border-0 focus:outline-none focus:ring-2 focus:ring-white/30
+                                   class="w-full pl-12 pr-4 py-4 bg-surface-50 dark:bg-surface-700/50 text-surface-800 dark:text-surface-200
+                                          placeholder:text-surface-400 dark:placeholder:text-surface-500
+                                          rounded-xl border-0 focus:outline-none focus:ring-2 focus:ring-primary-500/30
                                           text-sm sm:text-base transition-all duration-200">
                         </div>
                         <div class="flex gap-2">
                             <button @click="showFilters = !showFilters"
-                                    class="px-4 py-3 rounded-xl bg-white/10 text-white/70 hover:bg-white/20 transition-all duration-200 flex items-center gap-2">
+                                    class="px-4 py-3 rounded-xl bg-surface-100 dark:bg-surface-700 text-surface-500 dark:text-surface-400
+                                           hover:bg-surface-200 dark:hover:bg-surface-600 transition-all duration-200 flex items-center gap-2">
                                 <i data-lucide="sliders-horizontal" class="w-4 h-4"></i>
                                 <span class="text-sm hidden sm:inline">Filter</span>
                             </button>
-                            <button class="px-8 py-3 rounded-xl bg-white text-primary-700 font-semibold
-                                           hover:bg-white/90 transition-all duration-200 shadow-lg shadow-black/10
+                            <button class="px-8 py-3 rounded-xl bg-primary-600 text-white font-semibold
+                                           hover:bg-primary-700 transition-all duration-200
+                                           shadow-lg shadow-primary-600/25
                                            flex items-center gap-2 text-sm sm:text-base">
                                 <i data-lucide="search" class="w-4 h-4"></i>
                                 Cari
@@ -64,65 +59,65 @@
                         </div>
                     </div>
                     <!-- Filter Dropdown -->
-                    <div x-show="showFilters" x-transition class="mt-2 p-4 bg-white/5 rounded-xl border border-white/10 grid grid-cols-1 sm:grid-cols-3 gap-3" style="display:none;">
-                        <select class="bg-white/10 border-0 text-white/80 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-white/30">
-                            <option value="" class="text-surface-800">Semua Kategori</option>
-                            <option value="fiksi" class="text-surface-800">Fiksi</option>
-                            <option value="nonfiksi" class="text-surface-800">Non-Fiksi</option>
-                            <option value="sains" class="text-surface-800">Sains</option>
-                            <option value="teknologi" class="text-surface-800">Teknologi</option>
+                    <div x-show="showFilters" x-transition class="mt-2 p-4 bg-surface-50 dark:bg-surface-700/30 rounded-xl border border-surface-100 dark:border-surface-700 grid grid-cols-1 sm:grid-cols-3 gap-3" style="display:none;">
+                        <select class="bg-white dark:bg-surface-700 border border-surface-200 dark:border-surface-600 text-surface-700 dark:text-surface-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-primary-500/30 focus:border-primary-500">
+                            <option value="">Semua Kategori</option>
+                            <option value="fiksi">Fiksi</option>
+                            <option value="nonfiksi">Non-Fiksi</option>
+                            <option value="sains">Sains</option>
+                            <option value="teknologi">Teknologi</option>
                         </select>
-                        <select class="bg-white/10 border-0 text-white/80 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-white/30">
-                            <option value="" class="text-surface-800">Semua Level</option>
-                            <option value="pemula" class="text-surface-800">Pemula</option>
-                            <option value="menengah" class="text-surface-800">Menengah</option>
-                            <option value="lanjut" class="text-surface-800">Lanjut</option>
+                        <select class="bg-white dark:bg-surface-700 border border-surface-200 dark:border-surface-600 text-surface-700 dark:text-surface-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-primary-500/30 focus:border-primary-500">
+                            <option value="">Semua Level</option>
+                            <option value="pemula">Pemula</option>
+                            <option value="menengah">Menengah</option>
+                            <option value="lanjut">Lanjut</option>
                         </select>
-                        <select class="bg-white/10 border-0 text-white/80 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-white/30">
-                            <option value="" class="text-surface-800">Semua Penerbit</option>
-                            <option value="gramedia" class="text-surface-800">Gramedia</option>
-                            <option value="erlangga" class="text-surface-800">Erlangga</option>
+                        <select class="bg-white dark:bg-surface-700 border border-surface-200 dark:border-surface-600 text-surface-700 dark:text-surface-300 rounded-lg px-3 py-2 text-sm focus:ring-2 focus:ring-primary-500/30 focus:border-primary-500">
+                            <option value="">Semua Penerbit</option>
+                            <option value="gramedia">Gramedia</option>
+                            <option value="erlangga">Erlangga</option>
                         </select>
                     </div>
                 </div>
             </div>
 
             <!-- Quick Tags -->
-            <div class="flex flex-wrap justify-center gap-2 mt-6 animate-fade-in" style="animation-delay: 0.4s;">
-                <span class="text-xs text-white/40 mr-1">Populer:</span>
-                <a href="#" class="px-3 py-1 rounded-full text-xs font-medium bg-white/10 text-white/70 hover:bg-white/20 transition-colors">Pemrograman</a>
-                <a href="#" class="px-3 py-1 rounded-full text-xs font-medium bg-white/10 text-white/70 hover:bg-white/20 transition-colors">Novel Fiksi</a>
-                <a href="#" class="px-3 py-1 rounded-full text-xs font-medium bg-white/10 text-white/70 hover:bg-white/20 transition-colors">Desain UI/UX</a>
-                <a href="#" class="px-3 py-1 rounded-full text-xs font-medium bg-white/10 text-white/70 hover:bg-white/20 transition-colors">Machine Learning</a>
+            <div class="flex flex-wrap justify-center gap-2 mt-6">
+                <span class="text-xs text-surface-400 dark:text-surface-500 mr-1 self-center">Populer:</span>
+                <a href="#" class="px-3 py-1 rounded-full text-xs font-medium bg-surface-100 dark:bg-surface-800 text-surface-600 dark:text-surface-300 border border-surface-200 dark:border-surface-700 hover:border-primary-300 dark:hover:border-primary-600 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Pemrograman</a>
+                <a href="#" class="px-3 py-1 rounded-full text-xs font-medium bg-surface-100 dark:bg-surface-800 text-surface-600 dark:text-surface-300 border border-surface-200 dark:border-surface-700 hover:border-primary-300 dark:hover:border-primary-600 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Novel Fiksi</a>
+                <a href="#" class="px-3 py-1 rounded-full text-xs font-medium bg-surface-100 dark:bg-surface-800 text-surface-600 dark:text-surface-300 border border-surface-200 dark:border-surface-700 hover:border-primary-300 dark:hover:border-primary-600 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Desain UI/UX</a>
+                <a href="#" class="px-3 py-1 rounded-full text-xs font-medium bg-surface-100 dark:bg-surface-800 text-surface-600 dark:text-surface-300 border border-surface-200 dark:border-surface-700 hover:border-primary-300 dark:hover:border-primary-600 hover:text-primary-600 dark:hover:text-primary-400 transition-colors">Machine Learning</a>
             </div>
         </div>
 
-        <!-- Stats Bar -->
-        <div class="max-w-3xl mx-auto mt-16 grid grid-cols-3 gap-4 animate-slide-up" style="animation-delay: 0.3s;">
-            <div class="text-center p-4 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10">
-                <div class="text-3xl sm:text-4xl font-display font-bold text-white" x-data="{ count: 0 }" x-init="let interval = setInterval(() => { if(count < 2450) count += 37; else { count = 2450; clearInterval(interval); } }, 20)">
+        <!-- Stats Bar — clean cards with borders -->
+        <div class="max-w-3xl mx-auto mt-16 grid grid-cols-3 gap-4">
+            <div class="text-center p-5 rounded-2xl bg-white dark:bg-surface-800 border border-surface-200 dark:border-surface-700 shadow-sm">
+                <div class="text-3xl sm:text-4xl font-display font-bold text-surface-900 dark:text-white" x-data="{ count: 0 }" x-init="let interval = setInterval(() => { if(count < 2450) count += 37; else { count = 2450; clearInterval(interval); } }, 20)">
                     <span x-text="count.toLocaleString()">0</span>
                 </div>
-                <div class="text-sm text-white/50 mt-1">Total Buku</div>
+                <div class="text-sm text-surface-500 dark:text-surface-400 mt-1">Total Buku</div>
             </div>
-            <div class="text-center p-4 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10">
-                <div class="text-3xl sm:text-4xl font-display font-bold text-white" x-data="{ count: 0 }" x-init="let interval = setInterval(() => { if(count < 186) count += 3; else { count = 186; clearInterval(interval); } }, 25)">
+            <div class="text-center p-5 rounded-2xl bg-white dark:bg-surface-800 border border-surface-200 dark:border-surface-700 shadow-sm">
+                <div class="text-3xl sm:text-4xl font-display font-bold text-surface-900 dark:text-white" x-data="{ count: 0 }" x-init="let interval = setInterval(() => { if(count < 186) count += 3; else { count = 186; clearInterval(interval); } }, 25)">
                     <span x-text="count">0</span>
                 </div>
-                <div class="text-sm text-white/50 mt-1">Penulis</div>
+                <div class="text-sm text-surface-500 dark:text-surface-400 mt-1">Penulis</div>
             </div>
-            <div class="text-center p-4 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10">
-                <div class="text-3xl sm:text-4xl font-display font-bold text-white" x-data="{ count: 0 }" x-init="let interval = setInterval(() => { if(count < 1203) count += 18; else { count = 1203; clearInterval(interval); } }, 20)">
+            <div class="text-center p-5 rounded-2xl bg-white dark:bg-surface-800 border border-surface-200 dark:border-surface-700 shadow-sm">
+                <div class="text-3xl sm:text-4xl font-display font-bold text-surface-900 dark:text-white" x-data="{ count: 0 }" x-init="let interval = setInterval(() => { if(count < 1203) count += 18; else { count = 1203; clearInterval(interval); } }, 20)">
                     <span x-text="count.toLocaleString()">0</span>
                 </div>
-                <div class="text-sm text-white/50 mt-1">Pembaca Aktif</div>
+                <div class="text-sm text-surface-500 dark:text-surface-400 mt-1">Pembaca Aktif</div>
             </div>
         </div>
     </div>
 
     <!-- Scroll Indicator -->
     <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-        <i data-lucide="chevrons-down" class="w-6 h-6 text-white/30"></i>
+        <i data-lucide="chevrons-down" class="w-6 h-6 text-surface-300 dark:text-surface-600"></i>
     </div>
 </section>
 

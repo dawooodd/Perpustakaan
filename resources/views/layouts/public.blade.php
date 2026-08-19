@@ -23,8 +23,9 @@
     <!-- Public Navbar -->
     <header x-data="{ scrolled: false, mobileMenu: false }"
             @scroll.window="scrolled = window.scrollY > 50"
-            :class="scrolled ? 'bg-white/90 dark:bg-surface-900/90 backdrop-blur-xl shadow-sm border-b border-surface-200/50 dark:border-surface-700/50' : 'bg-transparent'"
-            class="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
+            :class="scrolled && 'shadow-sm border-b border-surface-200/50 dark:border-surface-700/50'"
+            class="fixed top-0 left-0 right-0 z-50 transition-all duration-300
+                   bg-white/90 dark:bg-surface-900/90 backdrop-blur-xl">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-16 lg:h-20">
                 <!-- Logo -->

@@ -1,0 +1,22 @@
+[app]
+name = "mucha/pustakaone"
+version = "0.1.0"
+
+[dependencies]
+"php/php" = "^8.3"
+
+[fs]
+"/app" = "."
+
+# Map an ephemeral volume for /tmp if the runtime strictly requires it, 
+# though Wasmer often provides an ephemeral /tmp by default.
+[[fs.mounts]]
+target = "/tmp"
+volume = "tmp_vol"
+
+[volumes]
+tmp_vol = {}
+
+# The web interface config. We point the document root to Laravel's public directory.
+[web]
+document_root = "/app/public"

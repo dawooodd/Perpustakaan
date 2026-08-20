@@ -20,3 +20,12 @@ tmp_vol = {}
 # The web interface config. We point the document root to Laravel's public directory.
 [web]
 document_root = "/app/public"
+
+# Explicitly map host environment variables into the Wasm sandbox
+[env]
+DB_CONNECTION = "${DB_CONNECTION}"
+DB_HOST = "${DB_HOST}"
+DB_PORT = "${DB_PORT}"
+DB_DATABASE = "${DB_DATABASE}"
+DB_USERNAME = "${DB_USERNAME}"
+DB_PASSWORD = "${DB_PASSWORD}"

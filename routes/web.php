@@ -51,17 +51,3 @@ Route::middleware(['admin'])->group(function () {
     Route::get('/admin', [AdminController::class, 'index'])->name('admin.dashboard');
     Route::get('/admin/profile', [AdminController::class, 'profile'])->name('admin.profile');
 });
-
-Route::get('/setup-db-rahasia', function () {
-    try {
-        // Menjalankan migrasi secara paksa di mode production
-        Artisan::call('migrate', ['--force' => true]);
-        
-        // (Opsional) Menjalankan seeder untuk mengisi data awal
-        Artisan::call('db:seed', ['--force' => true]);
-        
-        return 'Tabel Database dan Data Awal Berhasil Dibuat!';
-    } catch (\Exception $e) {
-        return 'Error: ' . $e->getMessage();
-    }
-});

@@ -51,3 +51,7 @@ Route::middleware(['admin'])->group(function () {
     Route::get('/admin', [AdminController::class, 'index'])->name('admin.dashboard');
     Route::get('/admin/profile', [AdminController::class, 'profile'])->name('admin.profile');
 });
+<<<<<<< HEAD
+=======
+
+>>>>>>> f0dd7e358b8794dc51c11564177a6d72a0a615d7

@@ -32,6 +32,11 @@ class AppServiceProvider extends ServiceProvider
             
             // Bypass session agar tidak error saat baca database
             'session.driver' => 'cookie', 
+            
+            // PAKSA MENGGUNAKAN SSL UNTUK AIVEN CLOUD
+            'database.connections.mysql.options' => extension_loaded('pdo_mysql') ? [
+                \PDO::MYSQL_ATTR_SSL_CA => storage_path('ca.pem'),
+            ] : [],
         ]);
     }
 }

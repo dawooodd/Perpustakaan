@@ -7,6 +7,13 @@
     <title>@yield('title', 'PustakaOne') — Katalog Buku</title>
     <meta name="description" content="@yield('meta_description', 'Jelajahi koleksi buku digital terlengkap. Baca buku favoritmu kapan saja, di mana saja.')">
 
+    <!-- OpenGraph Meta Tags untuk Social Media (LinkedIn, WA, FB, Twitter) -->
+    <meta property="og:title" content="@yield('title', 'PustakaOne') — Jelajahi Dunia Pengetahuan">
+    <meta property="og:description" content="@yield('meta_description', 'Ribuan koleksi buku digital tersedia untukmu. Temukan, baca, dan kelola perpustakaanmu secara modern dan efisien.')">
+    <meta property="og:image" content="{{ asset('img/og-banner.png') }}">
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

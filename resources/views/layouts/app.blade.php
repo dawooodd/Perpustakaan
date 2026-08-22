@@ -7,6 +7,13 @@
     <title>@yield('title', 'Dashboard') — PustakaOne</title>
     <meta name="description" content="@yield('meta_description', 'Sistem Manajemen Perpustakaan Digital Modern')">
 
+    <!-- OpenGraph Meta Tags untuk Social Media (LinkedIn, WA, FB, Twitter) -->
+    <meta property="og:title" content="@yield('title', 'PustakaOne') — Sistem Manajemen Perpustakaan">
+    <meta property="og:description" content="@yield('meta_description', 'Kelola perpustakaan digital Anda dengan mudah, cepat, dan modern.')">
+    <meta property="og:image" content="{{ asset('img/og-banner.png') }}">
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
